@@ -1,0 +1,196 @@
+<div class="row">
+    <div class="col-2">
+      <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#home" role="tab" aria-controls="v-pills-home" aria-selected="true">Home</a>
+        <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Profil</a>
+        <a class="nav-link" id="v-pills-hesaplarım-tab" data-toggle="pill" href="#hesap-bilgileri" role="tab" aria-controls="v-pills-messages" aria-selected="false">Hesaplarım</a>
+        <a class="nav-link" id="v-pills-hesapac-tab" data-toggle="pill" href="#hesap-ac" role="tab" aria-controls="v-pills-messages" aria-selected="false">Yeni Hesap Aç</a>
+        <a class="nav-link" id="v-pills-paracekme-tab" data-toggle="pill" href="#para-cekme" role="tab" aria-controls="v-pills-messages" aria-selected="false">Para Çekme</a>
+        <a class="nav-link" id="v-pills-parayatırma-tab" data-toggle="pill" href="#para-yatırma" role="tab" aria-controls="v-pills-messages" aria-selected="false">Para Yatırma</a>
+        <a class="nav-link" id="v-pills-havale-tab" data-toggle="pill" href="#havale" role="tab" aria-controls="v-pills-messages" aria-selected="false">Havale</a>
+        <a class="nav-link" id="v-pills-hesapk-kayıtları-tab" data-toggle="pill" href="#hesap-kayıtları" role="tab" aria-controls="v-pills-settings" aria-selected="false">Hesap Kayıtları</a>
+       
+      </div>
+    </div>
+    <div class="col-10">
+      <div class="tab-content" id="v-pills-tabContent">
+
+        <div class="tab-pane fade  show active" id="home" role="tabpanel" aria-labelledby="v-pills-home-tab">...</div> <!--Home tab-->
+
+        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">  <!--Profil tab-->
+            <table class="table"> 
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">index</th>
+                    <th scope="col">Ad</th>
+                    <th scope="col">Soyad</th>
+                    <th scope="col">Tc Kimlik No</th>
+                    <th scope="col">Yaş</th>
+                    <th scope="col">Email</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                      <th scope="row">1</th>
+                      <td><%=admin[0].ad%></td>
+                      <td><%=admin[0].soyad%></td>
+                      <td><%=admin[0].TcKimlikNo%></td>
+                      <td><%=admin[0].yas%></td>
+                      <td><%=admin[0].email%></td>
+                    </tr>                           
+                </tbody>
+               </table>
+        </div>
+
+        <div class="tab-pane fade"  id="hesap-bilgileri" role="tabpanel" aria-labelledby="v-pills-hesapBilgileri-tab">   <!--Hesap Bilgileri tab-->
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">index</th>
+                  <th scope="col">Hesap Numarası</th>
+                  <th scope="col">Hesap Adı</th>
+                  <th scope="col">Hesap Açıklaması</th>
+                  <th scope="col">Hesap Bakiyesi</th>
+                </tr>
+              </thead>
+              <tbody>
+                <%for(var i=0; HesapBilgi.length>i; i++) {%>
+                  <tr>
+                    <th scope="row"><%=i + 1%></th>
+                    <td><%=HesapBilgi[i].hesapNo%></td>
+                    <td><%=HesapBilgi[i].hesapAdi%></td>
+                    <td><%=HesapBilgi[i].hesapAciklamasi%></td>
+                    <td><%=HesapBilgi[i].hesapBakiyesi%></td>
+                  </tr>          
+                <%}%>
+              </tbody>
+            </table>                
+        </div>
+
+          
+        <div class="tab-pane fade" id="hesap-ac" role="tabpanel" aria-labelledby="v-pills-hesapAc-tab">  <!--Yeni Hesap Açma tab-->
+          
+          <div class="wrapper">
+
+              <form class="form-signin" action="/kullaniciPage/yeniHesapOlustur/<%=admin[0].TcKimlikNo%>" method="POST">
+            
+                <h2 class="form-signin-heading text-center"> Yeni Hesap Oluştur</h2>
+                
+                <input id="hesapac-hesapno" type="text" class="form-control" name="HesapAc_hesap_no" placeholder="Hesap No">  
+          
+                <input id="hesapac-hesapadi" type="text" class="form-control" name="HesapAc_hesap_adi" placeholder="Hesap Adı"> 
+          
+                <input id="hesapac-hesapaciklama" type="text" class="form-control" name="HesapAc_hesap_aciklamasi" placeholder="Hesap Açıklaması">
+          
+                <input id="hesapac-hesapbakiyesi" type="text" class="form-control" name="HesapAc_hesap_bakiyesi" placeholder="Hesap Bakiyesi">
+
+                <input id="hesapac-hesapLogId" type="text" class="form-control" name="HesapAc_hesap_logId" placeholder="Hesap Log ID">
+          
+                <input type="submit" class="btn btn-lg btn-primary btn-block" value="Hesap Aç">
+            
+              </form>
+            
+            </div>
+          
+        </div>
+
+        <div class="tab-pane fade" id="para-cekme" role="tabpanel" aria-labelledby="v-pills-paracekme-tab">  <!--Para Çekme tab-->
+          
+          <div class="wrapper">
+
+              <form class="form-signin" action="/kullaniciPage/paracekme/<%=admin[0].TcKimlikNo%>" method="POST">
+            
+                <h2 class="form-signin-heading text-center">Para Çekme</h2>
+
+                <div class="form-group">
+                  <label for="sel1">Hesaplarınız:</label>
+
+                  <select class="form-control" id="hesapSelect" name="hesapNumarası">
+
+                    <%for(var i=0;HesapBilgi.length>i; i++) {%>
+                    <option value="<%=HesapBilgi[i].hesapNo%>"><%=HesapBilgi[i].hesapNo%></option>
+                    <%}%>
+
+                  </select>
+                </div>
+            
+                <input type="text" class="form-control" name="paracekme_Miktar" placeholder="Miktar" required = "" autofocus="">
+            
+                <input type="submit" class="btn btn-lg btn-primary" value="Para Çek">
+            
+              </form>
+            
+            </div>
+
+        </div>   
+
+        <div class="tab-pane fade" id="para-yatırma" role="tabpanel" aria-labelledby="v-pills-parayatırma-tab">  <!--Para Yatıma tab-->
+          
+          <div class="wrapper">
+
+              <form class="form-signin" action="/kullaniciPage/parayatirma/<%=admin[0].TcKimlikNo%>" method="POST">
+            
+                <h2 class="form-signin-heading text-center">Para Yatırma</h2>
+
+                <div class="form-group">
+                    <label for="sel1">Hesaplarınız:</label>
+  
+                    <select class="form-control" id="hesapSelect" name="hesapNumarası">
+  
+                      <%for(var i=0;HesapBilgi.length>i; i++) {%>
+                      <option value="<%=HesapBilgi[i].hesapNo%>"><%=HesapBilgi[i].hesapNo%></option>
+                      <%}%>
+  
+                    </select>
+                  </div>
+            
+                <input type="text" class="form-control" name="parayatırma_Miktar" placeholder="Miktar" required = "" autofocus="">
+            
+
+                <input type="submit" class="btn btn-lg btn-primary" value="Para Yatır">
+            
+              </form>
+            
+            </div>
+
+        </div>   
+
+        <div class="tab-pane fade" id="havale" role="tabpanel" aria-labelledby="v-pills-havale-tab">   <!--Havale tab-->
+          
+          <div class="wrapper">
+
+            <form class="form-signin" action="/kullaniciPage/havale/<%=admin[0].TcKimlikNo%>" method="POST">
+          
+              <h2 class="form-signin-heading text-center">Havale Paneli</h2>
+
+              <div class="form-group">
+                  <label for="sel1">Hesaplarınız:</label>
+
+                  <select class="form-control" id="hesapSelect" name="hesapNumarası"> 
+
+                    <%for(var i=0;HesapBilgi.length>i; i++) {%>
+                    <option value="<%=HesapBilgi[i].hesapNo%>"><%=HesapBilgi[i].hesapNo%></option>
+                    <%}%>
+
+                  </select>
+
+                </div>
+              
+              <input id="hesapac-hesapbakiyesi" type="text" class="form-control" name="havale_hedefhesap" placeholder="Havale Yapılacak Hesap">
+              
+              <input type="text" class="form-control" name="havale_Miktar" placeholder="Miktar" required = "" autofocus="">
+          
+              <input type="submit" class="btn btn-lg btn-primary" value="Havale Yap">
+          
+            </form>
+          
+          </div>
+
+        </div>   
+      
+        <div class="tab-pane fade" id="hesap-kayıtları" role="tabpanel" aria-labelledby="v-pills-hesap-kayıtları-tab">    <!--Hesap-log tab-->
+          
+        </div>
+      </div>
+    </div>
+  </div>

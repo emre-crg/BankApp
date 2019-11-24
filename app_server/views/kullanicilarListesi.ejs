@@ -1,0 +1,23 @@
+<h1>Kullanicilar Listesi</h1>
+
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">index</th>
+            <th scope="col">Ad</th>
+            <th scope="col">Soyad</th>
+            <th scope="col">Tc Kimlik No</th>
+          </tr>
+        </thead>
+        <tbody>
+        <%for(var i=0; kullanicilar.length>i; i++) {%>
+          <tr>
+            <th scope="row"><%=i + 1%></th>
+            <td><%=kullanicilar[i].ad%></td>
+            <td><%=kullanicilar[i].soyad%></td>
+            <td><%=kullanicilar[i].TcKimlikNo%></td>
+          </tr>          
+        <%}%>
+        </tbody>
+      </table>
+    
